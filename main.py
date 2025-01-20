@@ -35,10 +35,10 @@ total_states = 50
 correct_states = []
 correct_states_count = len(correct_states)
 
-all_missing_states = {}     # Dictionary to hold missing states' name, x-cor and y-cor
-missing_state_list = []     # List to hold missing state names
-missing_states_xcor_list = []   # List to hold missing state's x-coordinates
-missing_states_ycor_list = []   # List to hold missing state's y-coordinates
+# all_missing_states = {}     # Dictionary to hold missing states' name, x-cor and y-cor
+# missing_state_list = []     # List to hold missing state names
+# missing_states_xcor_list = []   # List to hold missing state's x-coordinates
+# missing_states_ycor_list = []   # List to hold missing state's y-coordinates
 
 
 while correct_states_count < total_states:
@@ -47,30 +47,34 @@ while correct_states_count < total_states:
     answer_state = answer_state.title()
 
     if answer_state == "Exit":
+        missing_states = []
         for state_item in states_list:
             if not state_item in correct_states:
-                missing_state = states[states.state == state_item]  # Missing state (row object)
+                missing_states.append(state_item)
+                # missing_state = states[states.state == state_item]  # Missing state (row object)
 
-                missing_state_item = missing_state.state.item()     # Missing state's name
-                xcor = missing_state.x.item()                       # Missing state's x-coordinate
-                ycor = missing_state.y.item()                       # Missing state's y-coordinate
-
-                missing_state_list.append(missing_state_item)       # Add missing state's name to missing state list
-                missing_states_xcor_list.append(xcor)               # Add missing state's xcor to its list
-                missing_states_ycor_list.append(ycor)               # Add missing state's ycor to its list
-
-                # Populate the dictionary of all missing states
-                all_missing_states = {
-                    "state": missing_state_list,
-                    "x": missing_states_xcor_list,
-                    "y": missing_states_ycor_list
-        }
-
-        # Convert all_missing_state dictionary to pandas dataframe
-        df = pandas.DataFrame(all_missing_states)
+                # missing_state_item = missing_state.state.item()     # Missing state's name
+                # xcor = missing_state.x.item()                       # Missing state's x-coordinate
+                # ycor = missing_state.y.item()                       # Missing state's y-coordinate
+                #
+                # missing_state_list.append(missing_state_item)       # Add missing state's name to missing state list
+                # missing_states_xcor_list.append(xcor)               # Add missing state's xcor to its list
+                # missing_states_ycor_list.append(ycor)               # Add missing state's ycor to its list
+                #
+                # # Populate the dictionary of all missing states
+                # all_missing_states = {
+                #     "state": missing_state_list,
+                #     "x": missing_states_xcor_list,
+                #     "y": missing_states_ycor_list
+        # }
+        #
+        # # Convert all_missing_state dictionary to pandas dataframe
+        # df = pandas.DataFrame(all_missing_states)
 
         # Store df in a .csv file
-        df.to_csv("missing_states.csv")
+        # df.to_csv("missing_states.csv")
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv("states_to_learn.csv")
         break
 
     if answer_state in states_list:
