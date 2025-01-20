@@ -36,7 +36,7 @@ total_states = len(states.state)
 listed_states = []
 while game_is_on:
     # Take an input from the user
-    answer_state = screen.textinput(title="Guess the State", prompt=f"{correct_answer}/{total_states}: What's another state's name ?")
+    answer_state = screen.textinput(title=f"{correct_answer}/{total_states} States Correct", prompt= "What's another state's name ?")
     answer_state = answer_state.title()
 
     if answer_state in states_list:
