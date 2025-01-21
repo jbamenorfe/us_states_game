@@ -47,10 +47,10 @@ while correct_states_count < total_states:
     answer_state = answer_state.title()
 
     if answer_state == "Exit":
-        missing_states = []
-        for state_item in states_list:
-            if not state_item in correct_states:
-                missing_states.append(state_item)
+        missing_states = [state_item for state_item in states_list if not state_item in correct_states]
+        # for state_item in states_list:
+        #     if not state_item in correct_states:
+        #         missing_states.append(state_item)
                 # missing_state = states[states.state == state_item]  # Missing state (row object)
 
                 # missing_state_item = missing_state.state.item()     # Missing state's name
